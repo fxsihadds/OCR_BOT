@@ -47,7 +47,7 @@ def ocr_image_single(image_path, api_key):
             text = result["responses"][0]["textAnnotations"][0]["description"]
             return text
         else:
-            return "No text found in the image."
+            return "No Text Tound, Please Provide Photos."
     else:
         return "Error: {}".format(response.status_code)
 
