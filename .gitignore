@@ -1,5 +1,5 @@
-.pyc
+.session
+.session-journal
+*.pyc
 .venv/
 .download/
-OCR.session
-OCR.session-journal

@@ -54,7 +54,7 @@ def ocr_image_single(image_path, api_key):
 # Command handler for OCR command
 @Client.on_message(filters.document | filters.photo)
 async def ocr_command(client, message):
-    status = await message.reply_text("<b>⎚ `Processing images...`</b>")
+    status = await message.reply_text("<b>⎚ `Processing image...`</b>")
     download = await client.download_media(message.photo or message.document)
     recognized_text = ocr_image_single(image_path=download, api_key=api_key)
     await status.edit_text(f"""{recognized_text}""")        
