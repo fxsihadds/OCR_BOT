@@ -254,7 +254,6 @@ async def ocr_command(client, message):
             shutil.rmtree(output_folder)
             os.remove('output.srt')
             os.remove(output_zip)
-
             await status.delete()
         else:
             await status.edit_text("<b><i>Please reply to a message containing an <i><code>/ocr images.zip</code></b>")
