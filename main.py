@@ -12,7 +12,7 @@ bot = Client(
     api_hash=config['PYROGRAM']['API_HASH'],
     bot_token=config['PYROGRAM']['BOT_TOKEN'],
     plugins=dict(root='plugins'),
-    workers=100
+    workers=50
 )
 
 print('BOT ALIVE')
