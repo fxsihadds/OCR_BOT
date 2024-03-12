@@ -17,7 +17,7 @@ api_key = config['GOOGLE']['VISION_KEY']
 @Client.on_message((filters.document | filters.photo) & (filters.group | filters.private))
 async def ocr_command(client, message):
     trail = trial_control(client, message)
-    if trail is not True: return await message.reply_text('Your trial is over! Please purchase.')
+    if trail is not True: return await message.reply_text('<b>`Your trial is over! Please purchase.`<b>')
     status = await message.reply_text("<b>⎚ `Processing...`</b>")
     if message.document:
         if message.document.file_name.endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp')):

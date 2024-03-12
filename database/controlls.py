@@ -1,26 +1,29 @@
 from database.mongodb import connect_db
 from datetime import datetime
+from pymongo.errors import DuplicateKeyError
 
 mycol = connect_db()
 
 
 def add_user(bot, cmd):
-    user_dict = {
-        '_id': cmd.from_user.id,
-        'fname': cmd.from_user.first_name,
-        'lname': cmd.from_user.last_name,
-        'is_trial': True,
-        'Status': 't',
-        'remaining': 20,
-        'date': datetime.now()
-    }
-    insert = mycol.insert_one(user_dict)
-
+        user_dict = {
+            '_id': cmd.from_user.id,
+            'fname': cmd.from_user.first_name,
+            'lname': cmd.from_user.last_name,
+            'is_trial': True,
+            'Status': 't',
+            'remaining': 20,
+            'date': datetime.now()
+        }
+        insert = mycol.insert_one(user_dict)
 
 def find_one(bot, cmd):
     find_user = mycol.find_one({'_id': cmd.from_user.id})
     return find_user
 
+def is_exist(bot, cmd):
+    user = mycol.find_one({'_id': cmd.from_user.id})
+    return True if user else False
 
 def balance_add(bot, cmd, id, bl):
     try:
