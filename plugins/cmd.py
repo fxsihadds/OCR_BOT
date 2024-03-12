@@ -1,6 +1,6 @@
 from pyrogram import filters, Client
 from pyrogram.types import Message
-
+from database.controlls import add_user
 """
     await cmd.reply_text(
                      "🔍 Welcome to our OCR (Optical Character Recognition) Bot! Need help extracting text from images or PDF files? Just send them our way! For a smoother experience, here are a few hints:\n"
@@ -14,6 +14,7 @@ from pyrogram.types import Message
 
 @Client.on_message(filters.command(['start', 'help']))
 async def start_cmd(bot: Client, cmd: Message):
+    add_user(bot, cmd)
     await cmd.reply_text("🔍 𝘞𝘦𝘭𝘤𝘰𝘮𝘦 𝘵𝘰 𝘰𝘶𝘳 𝘖𝘊𝘙 (𝘖𝘱𝘵𝘪𝘤𝘢𝘭 𝘊𝘩𝘢𝘳𝘢𝘤𝘵𝘦𝘳 𝘙𝘦𝘤𝘰𝘨𝘯𝘪𝘵𝘪𝘰𝘯) 𝘉𝘰𝘵! 𝘕𝘦𝘦𝘥 𝘩𝘦𝘭𝘱 𝘦𝘹𝘵𝘳𝘢𝘤𝘵𝘪𝘯𝘨 𝘵𝘦𝘹𝘵 𝘧𝘳𝘰𝘮 𝘪𝘮𝘢𝘨𝘦𝘴 𝘰𝘳 𝘗𝘋𝘍 𝘧𝘪𝘭𝘦𝘴? 𝘑𝘶𝘴𝘵 𝘴𝘦𝘯𝘥 𝘵𝘩𝘦𝘮 𝘰𝘶𝘳 𝘸𝘢𝘺! 𝘍𝘰𝘳 𝘢 𝘴𝘮𝘰𝘰𝘵𝘩𝘦𝘳 𝘦𝘹𝘱𝘦𝘳𝘪𝘦𝘯𝘤𝘦, 𝘩𝘦𝘳𝘦 𝘢𝘳𝘦 𝘢 𝘧𝘦𝘸 𝘩𝘪𝘯𝘵𝘴:\n"
                          '1. 𝘌𝘯𝘴𝘶𝘳𝘦 𝘺𝘰𝘶𝘳 𝘪𝘮𝘢𝘨𝘦/𝘗𝘋𝘍 𝘪𝘴 𝘤𝘭𝘦𝘢𝘳 𝘢𝘯𝘥 𝘸𝘦𝘭𝘭-𝘭𝘪𝘵 𝘧𝘰𝘳 𝘣𝘦𝘴𝘵 𝘳𝘦𝘴𝘶𝘭𝘵𝘴.\n'
                          '2. 𝘊𝘢𝘱𝘵𝘶𝘳𝘦 𝘵𝘦𝘹𝘵 𝘪𝘯 𝘢 𝘴𝘪𝘯𝘨𝘭𝘦, 𝘧𝘰𝘤𝘶𝘴𝘦𝘥 𝘴𝘩𝘰𝘵 𝘧𝘰𝘳 𝘰𝘱𝘵𝘪𝘮𝘢𝘭 𝘳𝘦𝘤𝘰𝘨𝘯𝘪𝘵𝘪𝘰𝘯.\n'

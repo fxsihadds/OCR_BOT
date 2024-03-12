@@ -4,12 +4,9 @@ from speedtest import Speedtest, ConfigRetrievalError
 from pyrogram import Client, filters, enums
 from pyrogram.types import Message
 from datetime import datetime
-from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
-
-
-
+from database.utilitis import Admin
 #=====================================================
-@Client.on_message(filters.user(555994473) & filters.command('speedtest'))
+@Client.on_message(filters.user(Admin.owner_id) & filters.command('speedtest'))
 async def speedtest(client, message):
     msg = await message.reply_text("`Speedtest...`")
     try:

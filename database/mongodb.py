@@ -1,12 +1,11 @@
 import pymongo
 
-myclient = pymongo.MongoClient("mongodb://localhost:27017/")
-mydb = myclient["mydatabase"]
-mycol = mydb["customers"]
+uri = "mongodb+srv://sihadmiah7:CVrtlv9QKl4mhjCi@telegrambot.unrrxv0.mongodb.net/?retryWrites=true&w=majority&appName=telegrambot"
 
-mydict = { "name": "John", "address": "Highway 37" }
 
-x = mycol.insert_one(mydict)
-x = mycol.find_one()
-
-print(x)
+def connect_db():
+    myclient = pymongo.MongoClient(uri)
+    mydb = myclient['ocrbotusers']
+    # Insert a document into a collection to create the database
+    mycollection = mydb['users']
+    return mycollection

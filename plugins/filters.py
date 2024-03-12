@@ -6,6 +6,7 @@ import shutil
 import zipfile
 from configparser import ConfigParser
 from plugins.pdf import extract_images_from_pdf, ocr_image_single, process_images_in_folder
+from database.controlls import trial_control
 
 config = ConfigParser()
 config.read('config.ini')
@@ -15,6 +16,8 @@ api_key = config['GOOGLE']['VISION_KEY']
 # Command handler for OCR command
 @Client.on_message((filters.document | filters.photo) & (filters.group | filters.private))
 async def ocr_command(client, message):
+    trail = trial_control(client, message)
+    if trail is not True: return await message.reply_text('Your trial is over! Please purchase.')
     status = await message.reply_text("<b>⎚ `Processing...`</b>")
     if message.document:
         if message.document.file_name.endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp')):
