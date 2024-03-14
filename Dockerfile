@@ -10,9 +10,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the entire directory into the container
 COPY . .
 
-# Grant execution permission to the executable file
-RUN chmod +x exefile/VideoSubFinderWXW.exe
-
 EXPOSE 80
 
 # Run bot.py when the container launches

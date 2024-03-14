@@ -64,7 +64,7 @@ def process_image(image_path, output_folder, api_key):
                 text = result["responses"][0]["textAnnotations"][0]["description"]
                 output_file.write(text.encode("utf-8").decode("utf-8"))
             else:
-                output_file.write("No text found.")
+                output_file.write("null")
 
 # Function to process images in a folder using multiple threads
 def process_images_in_folder(input_folder, output_folder, api_key):
