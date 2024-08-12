@@ -9,6 +9,7 @@ import requests
 import base64
 from concurrent.futures import ThreadPoolExecutor
 from configparser import ConfigParser
+from database.controlls import user_zip_control
 
 config = ConfigParser()
 config.read('config.ini')
@@ -224,7 +225,15 @@ async def ocr_command(client, message):
 
             # Extract the contents of 'images.zip'
             with zipfile.ZipFile(download_dir / "images.zip", 'r') as zip_ref:
-                zip_ref.extractall(download_dir)
+                total_file = zip_ref.namelist()
+                dbstatus = user_zip_control(bot=client,cmd=message, ocr_images=len(total_file))
+                if dbstatus:
+                    zip_ref.extractall(download_dir)
+                else:
+                    os.remove(download_dir)
+                    await status.edit_text('Ocr Balance is Over, Please Purchase')
+                
+                
 
             # Process extracted images and create text files
             input_folder = download_dir

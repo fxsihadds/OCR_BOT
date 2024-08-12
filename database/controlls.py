@@ -40,6 +40,27 @@ def update_user(old_value, new_value):
     update_user_value = mycol.update_one(old_value, {"$set": new_value})
 
 
+
+def user_zip_control(bot, cmd, ocr_images) ->None:
+    find_one_user = find_one(bot, cmd)
+    is_trial = find_one_user['is_trial']
+    status = find_one_user['Status']
+    remain = find_one_user['remaining']
+    if is_trial and status == 't':
+        if remain > 0:
+            new_value = {
+                'remaining': remain - ocr_images
+            }
+            update_user(find_one_user, new_value)
+            return True
+        else:
+            return False
+    elif not is_trial and status == 'p':
+        return True
+    else:
+        return 'Something went wrong'
+
+
 def trial_control(bot, cmd):
     find_one_user = find_one(bot, cmd)
     is_trial = find_one_user['is_trial']
